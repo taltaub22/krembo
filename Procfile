@@ -1,1 +1,1 @@
-web: python dealscraper/krembo.py
+web: python krembo.py
