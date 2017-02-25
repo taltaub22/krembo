@@ -7,10 +7,26 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 
-class mentors(db.Model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
+    email = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(100))
+
+    def __init__(self, id, firstName, lastName, email, password):
+        self.id = id
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.password
+
+    def __repr__(self):
+        return '<user %r' % self.email
+
+
+class Mentors(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     school = db.Column(db.String(80))
     address = db.Column(db.String(150))
     phone = db.Column(db.String(12))
@@ -29,7 +45,7 @@ class mentors(db.Model):
         return '<mentor %r>' % self.firstName + " " + self.lastName
 
 
-class students(db.Model):
+class Students(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
@@ -55,7 +71,7 @@ class students(db.Model):
         return '<student %r>' % self.firstName + " " + self.lastName
 
 
-class activities(db.Model):
+class Activities(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     subject = db.Column(db.String(150))
     date = db.Column(db.DateTime)
@@ -66,6 +82,24 @@ class activities(db.Model):
         self.date = date
 
     def __repr__(self):
-        return '<activity %r>' % self.id + " "+self.subject
+        return '<activity %r>' % self.id + " " + self.subject
+
+
+class Transportations(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    color = db.Column(db.String(20))
+    amountOfWheelChairs = db.Column(db.Integer)
+    amountOfStudents = db.Column(db.Integer)
+    area = db.Column(db.String(150))
+
+    def __init__(self, id, color, amountOfWheelChairs, amountOfStudents, area):
+        self.id = id
+        self.color = color
+        self.amountOfWheelChairs = amountOfWheelChairs
+        self.amountOfStudents = amountOfStudents
+        self.area = area
+
+    def __repr__(self):
+        return '<Transportation %r>' % self.id + " " + self.color
 
 
