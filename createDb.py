@@ -8,10 +8,9 @@ from models import Transports
 from models import TransportsToActivities
 from models import StudentsInTransports
 
-
+db.drop_all()
 db.create_all()
 
-db.session.add(Users("Tal","Taub","taltaub22@gmail.com","123456"))
-
+tal = Users("Tal", "Taub", "taltaub22@gmail.com", "123456", "ab$%#$42")
+db.session.add(tal)
 db.session.commit()
-

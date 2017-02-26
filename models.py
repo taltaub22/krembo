@@ -1,5 +1,10 @@
+import os
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from krembo import db
+
+app = Flask(__name__)
+app.config.from_object(os.environ['APP_SETTINGS'])
+db = SQLAlchemy(app)
 
 
 class Users(db.Model):
@@ -10,19 +15,14 @@ class Users(db.Model):
     lastName = db.Column(db.String(80))
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(100))
+    salt = db.Column(db.String(128))
 
-    def __init__(self, id, first_name, last_name, email, password):
-        self.id = id
+    def __init__(self, first_name, last_name, email, password, salt):
         self.firstName = first_name
         self.lastName = last_name
         self.email = email
         self.password = password
-
-    def __init__(self, first_name, last_name, email, password):
-        self.firstName = first_name
-        self.lastName = last_name
-        self.email = email
-        self.password = password
+        self.salt = salt
 
     def __repr__(self):
         return '<user %r' % self.email
