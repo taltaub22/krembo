@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from krembo import db
 from models import *
 
+db.drop_all()
+db.session.commit()
+
 db.create_all()
 db.session.commit()
 
