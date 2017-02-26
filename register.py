@@ -12,7 +12,7 @@ from models import *
 def register(title='רישום'):
     if 'logged_in' in session:
         if request.method == 'POST':
-            email = request.form['email'].strip()
+            email = request.form['email'].strip().lower()
             first_name = request.form['first_name'].strip()
             last_name = request.form['last_name'].strip()
             password = request.form['password'].strip()

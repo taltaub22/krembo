@@ -10,8 +10,8 @@ from models import *
 def login():
     if 'logged_in' not in session:
         if request.method == 'POST':
-            email = request.form['userName']
-            password = request.form['pass']
+            email = request.form['userName'].strip().lower()
+            password = request.form['pass'].strip()
             if not user_exists(email):
                 flash('משתמש לא קיים במערכת')
                 return render_template('Login.html', title="התחברות")
