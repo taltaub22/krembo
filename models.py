@@ -1,7 +1,10 @@
+from flask_sqlalchemy import SQLAlchemy
 from krembo import db
 
 
 class Users(db.Model):
+    __tablename__ = 'Users'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
@@ -26,6 +29,8 @@ class Users(db.Model):
 
 
 class Mentors(db.Model):
+    __tablename__ = 'Mentors'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     school = db.Column(db.String(80))
     address = db.Column(db.String(150))
@@ -46,6 +51,8 @@ class Mentors(db.Model):
 
 
 class Students(db.Model):
+    __tablename__ = 'Students'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column(db.String(80))
     lastName = db.Column(db.String(80))
@@ -56,7 +63,8 @@ class Students(db.Model):
     wheelChair = db.Column(db.Boolean)
     comment = db.Column(db.String(200))
 
-    def __init__(self, id, first_name, last_name, address, contact_name, contact_phone, photo_approval, wheel_chair, comment):
+    def __init__(self, id, first_name, last_name, address, contact_name, contact_phone, photo_approval, wheel_chair,
+                 comment):
         self.id = id
         self.firstName = first_name
         self.lastName = last_name
@@ -72,6 +80,8 @@ class Students(db.Model):
 
 
 class Activities(db.Model):
+    __tablename__ = 'Activities'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     subject = db.Column(db.String(150))
     date = db.Column(db.DateTime)
@@ -86,6 +96,8 @@ class Activities(db.Model):
 
 
 class Transports(db.Model):
+    __tablename__ = 'Transports'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     color = db.Column(db.String(20))
     amountOfWheelChairs = db.Column(db.Integer)
@@ -104,6 +116,8 @@ class Transports(db.Model):
 
 
 class TransportsToActivities(db.Model):
+    __tablename__ = 'TransportsToActivities'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     transportId = db.Column(db.Integer, db.ForeignKey('Transports.id'))
     activityId = db.Column(db.Integer, db.ForeignKey('Activities.id'))
@@ -120,6 +134,8 @@ class TransportsToActivities(db.Model):
 
 
 class StudentsInTransports(db.Model):
+    __tablename__ = 'StudentsInTransports'
+
     studentId = db.Column(db.Integer, db.ForeignKey('Students.id'), primary_key=True)
     transportId = db.Column(db.Integer, db.ForeignKey('Transports.id'), primary_key=True)
 
@@ -132,6 +148,8 @@ class StudentsInTransports(db.Model):
 
 
 class MentorsInTransport(db.Model):
+    __tablename__ = 'MentorsInTransport'
+
     mentorId = db.Column(db.Integer, db.ForeignKey('Mentors.id'), primary_key=True)
     transportsToActivitiesId = db.Column(db.Integer, db.ForeignKey('TransportsToActivities.id'), primary_key=True)
 
