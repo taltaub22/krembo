@@ -10,6 +10,7 @@ from models import StudentsInTransports
 
 
 db.create_all()
+print (db.table)
 
 db.session.add(Users("Tal","Taub","taltaub22@gmail.com","123456"))
 
