@@ -1,3 +1,4 @@
+from flask.ext.sqlalchemy import SQLAlchemy
 from krembo import db
 from models import Users
 from models import Mentors
