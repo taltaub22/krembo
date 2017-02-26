@@ -1,10 +1,7 @@
 import os
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
+from krembo import db
 
 
 class Users(db.Model):
@@ -19,7 +16,13 @@ class Users(db.Model):
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
-        self.password
+        self.password = password
+
+    def __init__(self, firstName, lastName, email, password):
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.password = password
 
     def __repr__(self):
         return '<user %r' % self.email
@@ -85,7 +88,7 @@ class Activities(db.Model):
         return '<activity %r>' % self.id + " " + self.subject
 
 
-class Transportations(db.Model):
+class Transports(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     color = db.Column(db.String(20))
     amountOfWheelChairs = db.Column(db.Integer)
@@ -103,3 +106,41 @@ class Transportations(db.Model):
         return '<Transportation %r>' % self.id + " " + self.color
 
 
+class TransportsToActivities(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    transportId = db.Column(db.Integer, db.ForeignKey('Transports.id'))
+    activityId = db.Column(db.Integer, db.ForeignKey('Activities.id'))
+    direction = db.Column(db.Integer)
+
+    def __init__(self, id, transportId, activityId, direction):
+        self.id = id
+        self.transportId = transportId
+        self.activityId = activityId
+        self.direction = direction
+
+    def __repr__(self):
+        return '<TransportToActivities %r' % self.id + " " + self.direction
+
+
+class StudentsInTransports(db.Model):
+    studentId = db.Column(db.Integer, db.ForeignKey('Students.id'), primary_key=True)
+    transportId = db.Column(db.Integer, db.ForeignKey('Transports.id'), primary_key=True)
+
+    def __init__(self, studentId, transportId):
+        self.studentId = studentId
+        self.transportId = transportId
+
+    def __repr__(self):
+        return '<StudentsInTransports %r>' % self.studentId + " " + self.transportId
+
+
+class MentorsInTransport(db.Model):
+    mentorId = db.Column(db.Integer, db.ForeignKey('Mentors.id'), primary_key=True)
+    transportsToActivitiesId = db.Column(db.Integer, db.ForeignKey('TransportsToActivities.id'), primary_key=True)
+
+    def __init__(self, mentorId, transportsToActivitiesId):
+        self.mentorId = mentorId
+        self.transportsToActivitiesId = transportsToActivitiesId
+
+    def __repr__(self):
+        return '<MentorsIntransport %r>' & self.mentorId + " " + self.transportsToActivitiesId
