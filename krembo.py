@@ -3,12 +3,12 @@ import os
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask import url_for
 from flask_sqlalchemy import SQLAlchemy
 
 import register
 import views
 import login
-
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
@@ -22,4 +22,3 @@ app.add_url_rule('/Register', view_func=register.register, methods=['GET', 'POST
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-

@@ -3,7 +3,7 @@ from flask import render_template
 
 
 def index(title="דף הבית"):
-    return render_template("MainTamplate.html", title=title)
+    return render_template("index.html", title=title)
 
 
 

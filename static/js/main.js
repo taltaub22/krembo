@@ -11,13 +11,13 @@ $(document).ready(function () {
 
 function validate_inputs(input1, input2, wraper) {
     $(input2).keyup(function () {
-        if ($(input1).val() == $(input2).val()) {
-            $(wraper).removeClass("has-error");
+        if ($(input1).val().toLowerCase() == $(input2).val().toLowerCase()) {
+            $(wraper).removeClass("has-warning");
             $(wraper).addClass("has-success");
         }
         else {
             $(wraper).removeClass("has-success");
-            $(wraper).addClass("has-error");
+            $(wraper).addClass("has-warning");
         }
     });
 }

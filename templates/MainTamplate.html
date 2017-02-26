@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <!-- Bootstarp and Jquery -->
     <link rel="stylesheet" type="text/css" href="/static/css/main.css"/>
@@ -25,13 +26,25 @@
     <nav>
         <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
-                <a class="nav-link active" href="/">דף הבית</a>
+                <a class="nav-link" href="/">דף הבית</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">חניכים</a>
+                {% if not session.logged_in %}
+                    <a class="nav-link disabled" href="" disabled="true">חניכים</a>
+                {% else %}
+                    <a class="nav-link" href="/Students-View">חניכים</a>
+                {% endif %}
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">חונכים</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"> חונכים &nbsp;</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">הסעות</a>
