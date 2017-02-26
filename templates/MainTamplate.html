@@ -13,7 +13,7 @@
 
     <script src="/static/js/main.js"></script>
 
-    <title>{{ title }}</title>
+    <title>{{ title.decode('utf-8') }}</title>
 
 
 </head>
@@ -40,7 +40,11 @@
                 <a class="nav-link" href="#">פעולות</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Login">התחברות</a>
+                {% if not session.logged_in %}
+                    <a class="nav-link" href="/Login">התחברות</a>
+                {% else %}
+                    <a class="nav-link" href="/Logout">התנתק</a>
+                {% endif %}
             </li>
         </ul>
     </nav>
@@ -49,12 +53,14 @@
 
 <!--****************Content starts here*****************-->
 <hr/>
-
 <div class="container">
-
-
-
-
+    {% for msg in get_flashed_messages() %}
+        {% print msg.decode('utf-8') %}
+    {% endfor %}
+</div>
+<div class="container">
+    {% block content %}
+    {% endblock %}
 </div>
 
 <hr/>

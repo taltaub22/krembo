@@ -22,3 +22,11 @@ CREATE TABLE students (
   wheelChair    BOOLEAN    NOT NULL,
   comment       MEDIUMTEXT NULL
 );
+
+DROP TABLE IF EXISTS activities;
+CREATE TABLE activities (
+  id      INTEGER PRIMARY KEY          AUTO_INCREMENT,
+  subject MEDIUMTEXT,
+  date    DATETIME NOT NULL
+);
+
