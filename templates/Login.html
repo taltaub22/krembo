@@ -1,12 +1,12 @@
 {% extends "MainTamplate.html" %}
 {% block content %}
 
-    <form method="post" action="{{ url_for('login') }}">
-            <label for="userName" class="col-4 col-form-label">שם משתמש:</label>
-            <div class="col-8">
-                <input type="text" class="form-control col-6" id="userName" placeholder="שם משתמש"/>
-            </div>
-    </form>
-
+    <div class="center-block text-center">
+        <form method="POST" action="\Login">
+            <input type="text" class="form-control col-2" name="userName" placeholder="דואר אלקטרוני"/>
+            <input type="password" class="form-control col-6" name="pass" placeholder="סיסמא"/>
+            <input type="submit" class="btn btn-primary col-6" name="submit" value="התחבר"/>
+        </form>
+    </div>
 
 {% endblock %}
