@@ -34,3 +34,10 @@ def check_login(enterd_email, enterd_password):
             session['logged_in'] = True
             return redirect(url_for('index'))
     return render_template(url_for('login'), title="התחברות")
+
+
+def logout():
+    if 'logged_in' in session:
+        session.pop('logged_in')
+        return redirect(url_for('index'))
+    return redirect(url_for('login'))

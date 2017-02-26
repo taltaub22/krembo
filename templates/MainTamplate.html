@@ -54,8 +54,14 @@
 <!--****************Content starts here*****************-->
 <hr/>
 <div class="container">
+
+
     {% for msg in get_flashed_messages() %}
-        {% print msg.decode('utf-8') %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% print msg.decode('utf-8') %}
+        </div>
     {% endfor %}
 </div>
 <div class="container">
