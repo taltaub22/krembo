@@ -1,6 +1,3 @@
-import os
-from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
 from krembo import db
 
 
@@ -11,16 +8,16 @@ class Users(db.Model):
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(100))
 
-    def __init__(self, id, firstName, lastName, email, password):
+    def __init__(self, id, first_name, last_name, email, password):
         self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
+        self.firstName = first_name
+        self.lastName = last_name
         self.email = email
         self.password = password
 
-    def __init__(self, firstName, lastName, email, password):
-        self.firstName = firstName
-        self.lastName = lastName
+    def __init__(self, first_name, last_name, email, password):
+        self.firstName = first_name
+        self.lastName = last_name
         self.email = email
         self.password = password
 
@@ -35,14 +32,14 @@ class Mentors(db.Model):
     phone = db.Column(db.String(12))
     shirtSize = db.Column(db.String(5))
 
-    def __init__(self, id, firstName, lastName, school, address, phone, shirtSize):
+    def __init__(self, id, first_name, last_name, school, address, phone, shirt_size):
         self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
+        self.firstName = first_name
+        self.lastName = last_name
         self.school = school
         self.address = address
         self.phone = phone
-        self.shirtSize = shirtSize
+        self.shirtSize = shirt_size
 
     def __repr__(self):
         return '<mentor %r>' % self.firstName + " " + self.lastName
@@ -59,15 +56,15 @@ class Students(db.Model):
     wheelChair = db.Column(db.Boolean)
     comment = db.Column(db.String(200))
 
-    def __init__(self, id, firstName, lastName, address, contactName, contactPhone, photoApproval, wheelChair, comment):
+    def __init__(self, id, first_name, last_name, address, contact_name, contact_phone, photo_approval, wheel_chair, comment):
         self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
+        self.firstName = first_name
+        self.lastName = last_name
         self.address = address
-        self.contactName = contactName
-        self.contactPhone = contactPhone
-        self.photoApproval = photoApproval
-        self.wheelChair = wheelChair
+        self.contactName = contact_name
+        self.contactPhone = contact_phone
+        self.photoApproval = photo_approval
+        self.wheelChair = wheel_chair
         self.comment = comment
 
     def __repr__(self):
@@ -95,11 +92,11 @@ class Transports(db.Model):
     amountOfStudents = db.Column(db.Integer)
     area = db.Column(db.String(150))
 
-    def __init__(self, id, color, amountOfWheelChairs, amountOfStudents, area):
+    def __init__(self, id, color, amount_of_wheel_chairs, amount_of_students, area):
         self.id = id
         self.color = color
-        self.amountOfWheelChairs = amountOfWheelChairs
-        self.amountOfStudents = amountOfStudents
+        self.amountOfWheelChairs = amount_of_wheel_chairs
+        self.amountOfStudents = amount_of_students
         self.area = area
 
     def __repr__(self):
@@ -112,10 +109,10 @@ class TransportsToActivities(db.Model):
     activityId = db.Column(db.Integer, db.ForeignKey('Activities.id'))
     direction = db.Column(db.Integer)
 
-    def __init__(self, id, transportId, activityId, direction):
+    def __init__(self, id, transport_id, activity_id, direction):
         self.id = id
-        self.transportId = transportId
-        self.activityId = activityId
+        self.transportId = transport_id
+        self.activityId = activity_id
         self.direction = direction
 
     def __repr__(self):
@@ -126,9 +123,9 @@ class StudentsInTransports(db.Model):
     studentId = db.Column(db.Integer, db.ForeignKey('Students.id'), primary_key=True)
     transportId = db.Column(db.Integer, db.ForeignKey('Transports.id'), primary_key=True)
 
-    def __init__(self, studentId, transportId):
-        self.studentId = studentId
-        self.transportId = transportId
+    def __init__(self, student_id, transport_id):
+        self.studentId = student_id
+        self.transportId = transport_id
 
     def __repr__(self):
         return '<StudentsInTransports %r>' % self.studentId + " " + self.transportId
@@ -138,9 +135,9 @@ class MentorsInTransport(db.Model):
     mentorId = db.Column(db.Integer, db.ForeignKey('Mentors.id'), primary_key=True)
     transportsToActivitiesId = db.Column(db.Integer, db.ForeignKey('TransportsToActivities.id'), primary_key=True)
 
-    def __init__(self, mentorId, transportsToActivitiesId):
-        self.mentorId = mentorId
-        self.transportsToActivitiesId = transportsToActivitiesId
+    def __init__(self, mentor_id, transports_to_activities_id):
+        self.mentorId = mentor_id
+        self.transportsToActivitiesId = transports_to_activities_id
 
     def __repr__(self):
         return '<MentorsIntransport %r>' & self.mentorId + " " + self.transportsToActivitiesId
