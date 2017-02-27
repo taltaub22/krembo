@@ -1,0 +1,57 @@
+{% extends "/MainTamplate.html" %}
+{% block content %}
+
+    <form method="POST" action="{{ url_for('insert_mentor') }}">
+        <div class="form-group row">
+            <label for="first_name" class="col-2 col-form-label">שם פרטי</label>
+            <div class="col-10">
+                <input class="form-control" type="text" id="first_name" name="first_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="last_name" class="col-2 col-form-label">שם משפחה</label>
+            <div class="col-10">
+                <input class="form-control" type="text" id="last_name" name="last_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="school" class="col-2 col-form-label">בית ספר</label>
+            <div class="col-10">
+                <input class="form-control" type="text" id="school" name="school">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="address" class="col-2 col-form-label">כתובת</label>
+            <div class="col-10">
+                <input class="form-control" type="text" id="address" name="address">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-2 col-form-label">טלפון</label>
+            <div class="col-10">
+                <input class="form-control" type="tel" id="phone" name="phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="shirtSize" class="col-2 col-form-label">מידת חולצה</label>
+            <div class="col-10">
+                <select class="form-control" id="shirtSize" name="shirtSize">
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-12">
+                <input class="btn btn-primary form-control" type="submit" value="הוסף חונך" id="submit" name="submit">
+            </div>
+        </div>
+    </form>
+
+
+
+{% endblock %}

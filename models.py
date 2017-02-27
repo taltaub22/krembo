@@ -32,13 +32,14 @@ class Mentors(db.Model):
     __tablename__ = 'Mentors'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    firstName = db.Column(db.String(80))
+    lastName = db.Column(db.String(80))
     school = db.Column(db.String(80))
     address = db.Column(db.String(150))
     phone = db.Column(db.String(12))
     shirtSize = db.Column(db.String(5))
 
-    def __init__(self, id, first_name, last_name, school, address, phone, shirt_size):
-        self.id = id
+    def __init__(self, first_name, last_name, school, address, phone, shirt_size):
         self.firstName = first_name
         self.lastName = last_name
         self.school = school
@@ -63,9 +64,8 @@ class Students(db.Model):
     wheelChair = db.Column(db.Boolean)
     comment = db.Column(db.String(200))
 
-    def __init__(self, id, first_name, last_name, address, contact_name, contact_phone, photo_approval, wheel_chair,
+    def __init__(self, first_name, last_name, address, contact_name, contact_phone, photo_approval, wheel_chair,
                  comment):
-        self.id = id
         self.firstName = first_name
         self.lastName = last_name
         self.address = address
@@ -86,8 +86,7 @@ class Activities(db.Model):
     subject = db.Column(db.String(150))
     date = db.Column(db.DateTime)
 
-    def __init__(self, id, subject, date):
-        self.id = id
+    def __init__(self, subject, date):
         self.subject = subject
         self.date = date
 
@@ -104,8 +103,7 @@ class Transports(db.Model):
     amountOfStudents = db.Column(db.Integer)
     area = db.Column(db.String(150))
 
-    def __init__(self, id, color, amount_of_wheel_chairs, amount_of_students, area):
-        self.id = id
+    def __init__(self, color, amount_of_wheel_chairs, amount_of_students, area):
         self.color = color
         self.amountOfWheelChairs = amount_of_wheel_chairs
         self.amountOfStudents = amount_of_students
@@ -123,8 +121,7 @@ class TransportsToActivities(db.Model):
     activityId = db.Column(db.Integer, db.ForeignKey('Activities.id'))
     direction = db.Column(db.Integer)
 
-    def __init__(self, id, transport_id, activity_id, direction):
-        self.id = id
+    def __init__(self, transport_id, activity_id, direction):
         self.transportId = transport_id
         self.activityId = activity_id
         self.direction = direction

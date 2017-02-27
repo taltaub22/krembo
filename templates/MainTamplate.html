@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <!-- Bootstarp and Jquery -->
@@ -22,17 +23,23 @@
 
 
 <header class="container">
-    <a href="/"><img src="/static/images/logo.jpg" class="center-block img-responsive" width="150" alt="logo"/></a>
+    <a href="/"><img src="/static/images/logo.jpg" class="img-responsive mx-auto d-block" width="150" alt="logo"/></a>
     <nav>
         <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
                 <a class="nav-link" href="/">דף הבית</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
                 {% if not session.logged_in %}
                     <a class="nav-link disabled" href="" disabled="true">חניכים</a>
                 {% else %}
-                    <a class="nav-link" href="/Students-View">חניכים</a>
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="true"
+                       aria-expanded="false"> חניכים &nbsp;</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">רשימת חניכים</a>
+                        <a class="dropdown-item" href="{{ url_for('insert_mentor') }}">הוספת חניך</a>
+                    </div>
                 {% endif %}
             </li>
             <li class="nav-item dropdown">
@@ -46,11 +53,27 @@
                     <a class="dropdown-item" href="#">Separated link</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">הסעות</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"> הסעות &nbsp;</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">פעולות</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"> פעולות &nbsp;</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
             </li>
             <li class="nav-item">
                 {% if not session.logged_in %}
@@ -67,10 +90,8 @@
 <!--****************Content starts here*****************-->
 <hr/>
 <div class="container">
-
-
-    {% for msg in get_flashed_messages() %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+        <div class="alert {{ category }} alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                     aria-hidden="true">&times;</span></button>
             {% print msg.decode('utf-8') %}
