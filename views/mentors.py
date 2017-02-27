@@ -29,4 +29,7 @@ def insert_mentor(title='הוסף חונך'):
 @login_required
 def view_mentors(title='חונכים'):
     mentors = Mentors.query.all()
-    return render_template('mentors/view-mentors.html', title=title, mentors=mentors)
+    if mentors is not None:
+        return render_template('mentors/view-mentors.html', title=title, mentors=mentors)
+    else:
+        return render_template('mentors/view-mentors.html', title=title, mentors=None)
