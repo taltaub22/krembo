@@ -11,7 +11,6 @@
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="/static/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-theme.min.css"/>
 
     <script src="/static/js/main.js"></script>
 
@@ -23,64 +22,58 @@
 
 
 <header class="container">
-    <a href="/"><img src="/static/images/logo.jpg" class="img-responsive mx-auto d-block" width="150" alt="logo"/></a>
-    <nav>
-        <ul class="nav nav-pills nav-justified">
-            <li class="nav-item">
-                <a class="nav-link" href="/">דף הבית</a>
-            </li>
-            <li class="nav-item dropdown">
-                {% if not session.logged_in %}
-                    <a class="nav-link disabled" href="" disabled="true">חניכים</a>
-                {% else %}
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                       aria-haspopup="true"
-                       aria-expanded="false"> חניכים &nbsp;</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item disabled" href="{{ url_for('view_mentors') }}">רשימת חניכים</a>
-                        <a class="dropdown-item disabled" href="{{ url_for('insert_mentor') }}">הוספת חניך</a>
+    <a href="/"><img src="/static/images/logo.png" class="img-responsive mx-auto d-block" width="150" alt="logo"/></a>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="/static/images/thumbnail.png" class="img-responsive img-thumbnail mx-auto d-block" width="40" alt="logo"/></a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-left">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">דף הבית</a>
+                </li>
+                <li class="nav-item dropdown">
+                    {% if not session.logged_in %}
+                        <a class="nav-link disabled" href="" disabled="true">חניכים</a>
+                    {% else %}
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false"> חניכים &nbsp;</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item disabled" href="{{ url_for('view_mentors') }}">רשימת חניכים</a>
+                            <a class="dropdown-item disabled" href="{{ url_for('insert_mentor') }}">הוספת חניך</a>
+                        </div>
+                    {% endif %}
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> חונכים &nbsp;</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{ url_for('view_mentors') }}">רשימת חונכים</a>
+                        <a class="dropdown-item" href="{{ url_for('insert_mentor') }}">הוספת חונך</a>
                     </div>
-                {% endif %}
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false"> חונכים &nbsp;</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ url_for('view_mentors') }}">רשימת חונכים</a>
-                    <a class="dropdown-item" href="{{ url_for('insert_mentor') }}">הוספת חונך</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false"> הסעות &nbsp;</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                   aria-expanded="false"> פעולות &nbsp;</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                {% if not session.logged_in %}
-                    <a class="nav-link" href="/Login">התחברות</a>
-                {% else %}
-                    <a class="nav-link" href="/Logout">התנתק</a>
-                {% endif %}
-            </li>
-        </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">הסעות</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">פעולות</a>
+                </li>
+                <li class="nav-item">
+                    {% if not session.logged_in %}
+                        <a class="nav-link" href="/Login">התחברות</a>
+                    {% else %}
+                        <a class="nav-link" href="/Logout">התנתק</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
     </nav>
+
 
 </header>
 
