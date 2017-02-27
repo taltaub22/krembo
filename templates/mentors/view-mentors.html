@@ -1,0 +1,30 @@
+{% extends "/MainTamplate.html" %}
+{% block content %}
+
+    <table class="table table-hover table-bordered">
+        <thead class="thead-default">
+        <tr>
+            <td>#</td>
+            <td>שם פרטי</td>
+            <td>שם משפחה</td>
+            <td>בית ספר</td>
+            <td>כתובת</td>
+            <td>טלפון</td>
+            <td>מידת חולצה</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for mentor in mentors %}
+            <tr>
+                <td>{{ mentor.id }}</td>
+                <td>{{ mentor.firstName }}</td>
+                <td>{{ mentor.lastName }}</td>
+                <td>{{ mentor.school }}</td>
+                <td>{{ mentor.address }}</td>
+                <td>{{ mentor.phone }}</td>
+                <td>{{ mentor.shirtSize }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

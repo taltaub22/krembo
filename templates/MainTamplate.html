@@ -37,7 +37,7 @@
                        aria-haspopup="true"
                        aria-expanded="false"> חניכים &nbsp;</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">רשימת חניכים</a>
+                        <a class="dropdown-item" href="{{ url_for('view_mentors') }}">רשימת חניכים</a>
                         <a class="dropdown-item" href="{{ url_for('insert_mentor') }}">הוספת חניך</a>
                     </div>
                 {% endif %}

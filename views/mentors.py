@@ -24,3 +24,9 @@ def insert_mentor(title='הוסף חונך'):
         db.session.add(mentor)
         db.session.commit()
     return render_template('mentors/insert-mentor.html', title=title)
+
+
+@login_required
+def view_mentors(title='חונכים'):
+    mentors = Mentors.query.all()
+    return render_template('mentors/view-mentors.html', title=title, mentors=mentors)

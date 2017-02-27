@@ -48,7 +48,7 @@ class Mentors(db.Model):
         self.shirtSize = shirt_size
 
     def __repr__(self):
-        return '<mentor %r>' % self.firstName + " " + self.lastName
+        return '<mentor %r>' % (self.firstName + " " + self.lastName)
 
 
 class Students(db.Model):

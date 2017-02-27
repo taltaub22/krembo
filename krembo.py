@@ -21,6 +21,7 @@ app.add_url_rule('/Register', view_func=register.register, methods=['GET', 'POST
 
 # Mentors
 app.add_url_rule('/AddMentor', view_func=mentors.insert_mentor, methods=['GET', 'POST'])
+app.add_url_rule('/ViewMentors', view_func=mentors.view_mentors, methods=['GET', 'POST'])
 
 #  Students
 
